@@ -1,4 +1,4 @@
 package ch08.sec10.exam01;
 
-public class D implements B {
+public class D extends B {
 }
