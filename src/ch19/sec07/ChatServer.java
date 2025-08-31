@@ -31,6 +31,7 @@ public class ChatServer {
             }
         });
         thread.start();
+
     }
 
     //메소드: 클라이언트 연결 시 SocketClient 생성 및 추가
