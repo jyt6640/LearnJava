@@ -1,0 +1,31 @@
+# Java 코딩 컨벤션 통합 설정
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.java]
+indent_style = tab
+indent_size = 4
+max_line_length = 120
+
+# 공백 규칙
+ij_java_space_after_comma = true
+ij_java_space_after_colon = true
+ij_java_space_around_assignment_operators = true
+ij_java_space_around_binary_operators = true
+ij_java_space_around_logical_operators = true
+ij_java_space_around_equality_operators = true
+ij_java_space_around_relational_operators = true
+
+# 중괄호 스타일 (K&R)
+ij_java_class_brace_style = end_of_line
+ij_java_method_brace_style = end_of_line
+ij_java_other_brace_style = end_of_line
+
+# import 와일드카드 금지
+ij_java_class_count_to_use_import_on_demand = 999
+ij_java_names_count_to_use_import_on_demand = 999
