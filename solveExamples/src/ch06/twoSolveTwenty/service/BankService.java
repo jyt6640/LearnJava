@@ -32,8 +32,6 @@ public class BankService {
 		return null;
 	}
 
-
-
 	public boolean searchService(String accountNumber) {
 		for(Account a : accounts){
 			if(a.getAccountNumber().equals(accountNumber)){
@@ -41,5 +39,18 @@ public class BankService {
 			}
 		}
 		return false;
+	}
+
+	public Account withdrawService(String accountNumber, int amount) {
+		for (Account a : accounts) {
+			if (a.getAccountNumber().equals(accountNumber)) {
+				if(a.getAccountBalance() < amount) {
+					return null;
+				}
+				a.withdrawBalance(amount);
+				return a;
+			}
+		}
+		return null;
 	}
 }

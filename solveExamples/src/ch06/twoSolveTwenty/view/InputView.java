@@ -28,5 +28,10 @@ public class InputView {
 		System.out.print("입금액> ");
 		return sc.nextInt();
 	}
+
+	public int withdrawAmount()  {
+		System.out.print("출금액> ");
+		return sc.nextInt();
+	}
 }
 

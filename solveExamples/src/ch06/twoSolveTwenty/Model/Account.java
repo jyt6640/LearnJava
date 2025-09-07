@@ -15,7 +15,8 @@ public class Account {
 	public String getAccountName() { return accountName; }
 	public int getAccountBalance() { return accountBalance; }
 
-	public int depositBalance(int amount) { return accountBalance += amount; }
+	public int depositBalance(int amount) { return this.accountBalance += amount; }
+	public int withdrawBalance(int amount) { return this.accountBalance -= amount; }
 
 	@Override
 	public String toString() {

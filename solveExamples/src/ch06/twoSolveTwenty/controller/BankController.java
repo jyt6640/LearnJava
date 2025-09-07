@@ -35,10 +35,11 @@ public class BankController {
 					break;
 				case 3:
 					outputView.showMessage("예금을 선택하였습니다.");
-					deposit();
+					depositAccount();
 					break;
 				case 4:
 					outputView.showMessage("출금을 선택하였습니다.");
+					withdrawAccount();
 					break;
 				case 5:
 					outputView.showMessage("종료를 선택하였습니다.");
@@ -72,7 +73,7 @@ public class BankController {
 		}
 	}
 
-	public void deposit() {
+	public void depositAccount() {
 		String accountNumber = inputView.accountNumber();
 		int amount = inputView.depositAmount();
 
@@ -82,7 +83,21 @@ public class BankController {
 		} else {
 			outputView.showMessage("존재하지 않는 계좌번호입니다.");
 		}
+	}
 
+	public void withdrawAccount() {
+		String accountNumber = inputView.accountNumber();
+		int amount = inputView.withdrawAmount();
+		if(bs.searchService(accountNumber)) {
+			Account acc = bs.withdrawService(accountNumber, amount);
+			if(acc == null) {
+				outputView.showMessage("잔액이 부족합니다.");
+				return;
+			}
+			outputView.showMessage("출금이 성공적으로 완료되었습니다.");
+		} else {
+			outputView.showMessage("존재하지 않는 계좌번호입니다.");
+		}
 	}
 }
 
