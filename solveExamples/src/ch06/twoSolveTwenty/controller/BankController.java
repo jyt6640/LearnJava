@@ -1,6 +1,7 @@
 package ch06.twoSolveTwenty.controller;
 
 import ch06.twoSolveTwenty.Model.Account;
+import ch06.twoSolveTwenty.service.BankService;
 import ch06.twoSolveTwenty.view.InputView;
 import ch06.twoSolveTwenty.view.OutputView;
 
@@ -12,7 +13,7 @@ public class BankController {
 	OutputView outputView;
 	InputView inputView;
 	Scanner sc = new Scanner(System.in);
-	List<Account> account = new ArrayList<>();
+	BankService bs = new BankService();
 
 	public BankController(OutputView outputView, InputView inputView) {
 		this.outputView = outputView;
@@ -34,6 +35,7 @@ public class BankController {
 					break;
 				case 3:
 					outputView.showMessage("예금을 선택하였습니다.");
+					deposit();
 					break;
 				case 4:
 					outputView.showMessage("출금을 선택하였습니다.");
@@ -51,15 +53,36 @@ public class BankController {
 		String accountNum = inputView.createAccountNumber();
 		String ownerName = inputView.createAccountName();
 		int balance = inputView.createAccountBalance();
-		account.add(new Account(accountNum, ownerName, balance));
-		outputView.showMessage("계좌가 생성되었습니다.");
+
+
+		boolean add = bs.addAccount(accountNum, ownerName, balance);
+		if (add) {
+			outputView.showMessage("계좌가 성공적으로 생성되었습니다.");
+		} else {
+			outputView.showMessage("이미 존재하는 계좌입니다.");
+		}
 	}
 
 	public void showAllAccount() {
-		for (Account acc : account) {
-			if (acc != null) {
-				outputView.showMessage("계좌번호: " + acc.getAccountNumber() + " | 계좌주: " + acc.getAccountName() + " | 계좌액: " + acc.getAccountBalance() + "원" + "\n");
-			}
+		for (Account acc : bs.getAllAccount()) {
+			outputView.showMessage(acc.toString());
+		}
+		if(bs.getAllAccount().isEmpty()) {
+			outputView.showMessage("계좌가 존재하지 않습니다.");
 		}
 	}
+
+	public void deposit() {
+		String accountNumber = inputView.accountNumber();
+		int amount = inputView.depositAmount();
+
+		if(bs.searchService(accountNumber)) {
+			bs.depositService(accountNumber, amount);
+			outputView.showMessage("입금이 성공적으로 완료되었습니다.");
+		} else {
+			outputView.showMessage("존재하지 않는 계좌번호입니다.");
+		}
+
+	}
 }
+

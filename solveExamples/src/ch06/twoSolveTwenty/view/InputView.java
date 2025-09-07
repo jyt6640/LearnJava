@@ -16,8 +16,17 @@ public class InputView {
 
 	public int createAccountBalance() {
 		System.out.print("초기입금액> ");
-		String input = sc.nextLine();
-		return Integer.parseInt(input);
+		return sc.nextInt();
 	}
 
+	public String accountNumber() {
+		System.out.print("계좌번호> ");
+		return sc.next();
+	}
+
+	public int depositAmount()  {
+		System.out.print("입금액> ");
+		return sc.nextInt();
+	}
 }
+
